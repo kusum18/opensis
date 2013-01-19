@@ -1,0 +1,66 @@
+openSIS Student Information System - INSTALLATION DIRECTIONS
+
+--------------------------------
+Version 4.5.0
+--------------------------------
+July 27, 2009
+
+NOTE: Before installing openSIS SIS, you must read and agree to the included
+License located in the openSIS root directory and titled "LICENSE".
+openSIS is a web based student information system application which relies on other facilities such as a web server, PHP server-side scripting, and postgres database server.  For openSIS to work you must first have your web server working, PHP working and PostgreSQL working. Username/password authentication should be in place for PostgreSQL and/or the web server.  
+
+Setting these up varies a lot with platform, operating system, and distribution so it is well beyond the scope of this brief install document.  
+
+openSIS 4.5 requires following software:
+
+--Apache 2.0.54, 
+--MySQL 5.X or higher
+--PHP 5.x 
+
+openSIS has been tested extensively with the XAMPP package.
+
+Upgrades
+--------
+
+If you have already installed a version of openSIS, you should choose Upgrade in the automated installer or follow the directions in the file called UPGRADE for a manual install.  Note there may be changes to the configuration variables in config.inc.php.
+
+Installing openSIS
+----------------------
+
+This installation assumes that you have installed and properly configured the following items:
+
+--  Web Server (Apache is the web server we test on and use)
+--  MySQL database software
+--  PHP
+
+
+Automated Installation
+----------------------
+openSIS includes an automated installer that has been extensively tested.  Testing has been done with various Linux versions, but success seems to vary with different distributions.
+
+To use the automated installer, unzip the openSIS files to a folder in your web servers directory called opensis.  In Apache this is usually located in the "htdocs" directory, Set the permissions of the "data.php" to writeable for everyone (see note). Then open your web browser and go to the following address:  http://<your server 
+address>/opensis/ The automated installer will guide you through the setup, create a database or choose an existing one, assign passwords and then direct you to the login screen.
+
+Note* - The installation needs access to a file named "data.php" that stores necessary information for connection to the database and default school year information.  The web server of the machine where openSIS is being installed must allow write access so the file can be modified or created.
+        In most cases the file is included with the distributed files , in this case only its "permissions" need to be modified.
+
+login as the user you created during install,  With this login, you can create new users or change the three template users.  Since students can not be deleted the template student should be changed to a proper student and the template photo deleted.
+Manual Installation 
+......................
+  Using phpMyAdmin: create the Database "opensis"
+      import the schema /install/osis-4.5-schema-mysql.sql
+      import the procedures  /install/osis-4.5-procs-mysql.sql
+  configure the /data.php manually
+      $DatabaseType = 'mysql'; 
+      $DatabaseServer = 'localhost'; 
+      $DatabaseUsername = 'mysql user'; 
+      $DatabasePassword = 'mysql password'; 
+      $DatabaseName = 'opensis'; 
+      $DatabasePort = '3306'; 
+      $DefaultSyear = '2009'; 
+
+  login and visit the "Your Install root"/install/reset_auto_increment.php
+
+
+Enjoy!
+
